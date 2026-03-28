@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import com.automation.playwright.base.BaseTest;
 import com.automation.playwright.pages.HomePage_Lib;
+import com.automation.playwright.pages.LoginPage_Lib;
 import com.automation.playwright.pages.RegistrationnPage_Lib;
 
 public class HomePageTest extends BaseTest {
@@ -24,6 +25,13 @@ public class HomePageTest extends BaseTest {
 
         RegistrationnPage_Lib registration = new RegistrationnPage_Lib(page);
         Assert.assertTrue(registration.createAnAccount());
+    }
+	
+	@Test(priority = 2)
+    public void login() {
+
+        LoginPage_Lib login = new LoginPage_Lib(page);
+        Assert.assertTrue(login.login());
     }
 
 }

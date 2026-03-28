@@ -13,11 +13,12 @@ public class RegistrationnPage_Lib {
 	public RegistrationnPage_Lib(Page page) {
 		this.page = page;
 	}
+
 	public boolean createAnAccount() {
 		try {
-			
+
 			page.waitForLoadState(LoadState.LOAD);
-			
+
 			// First Name & Last Name
 			page.fill(txt_FirstName, "TestFirstName");
 			page.fill(txt_LastName, "TestLastName");
@@ -47,10 +48,18 @@ public class RegistrationnPage_Lib {
 			page.click(btn_CreateAnAccount);
 			page.waitForLoadState(LoadState.LOAD);
 			page.waitForSelector(lbl_SucessMessage);
-			
-			
 
-			return true;
+			String strSuccessMessage = page.textContent(lbl_SucessMessage);
+
+			if (strSuccessMessage
+					.contains("You must confirm your account. Please check your email for the confirmation link")) {
+				System.out.println("Registration Successfull!!");
+
+				return true;
+			} else {
+				System.err.println("Registration unsuccessfull");
+				return false;
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
