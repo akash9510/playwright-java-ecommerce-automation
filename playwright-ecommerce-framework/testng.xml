@@ -1,0 +1,13 @@
+<suite name="Suite">
+
+    <listeners>
+        <listener class-name="com.automation.playwright.utils.ExtentListener"/>
+    </listeners>
+
+    <test name="Home Page Test">
+        <classes>
+            <class name="com.automation.playwright.tests.HomePageTest"/>
+        </classes>
+    </test>
+
+</suite>
