@@ -8,6 +8,6 @@ public class HomePage_WebE {
 
 	public static final String ico_MyAccount = ".my-account-link";
 
-	public static final String btn_CreateAnAccount = "text=Create an Account";
+	public static final String btn_CreateAnAccountHome = "text=Create an Account";
 
 }

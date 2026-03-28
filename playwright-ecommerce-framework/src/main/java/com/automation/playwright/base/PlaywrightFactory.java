@@ -6,40 +6,40 @@ import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
+import java.util.Arrays;
 
 public class PlaywrightFactory {
 
-    Playwright playwright;
-    Browser browser;
-    BrowserContext context;
-    Page page;
+	Playwright playwright;
+	Browser browser;
+	BrowserContext context;
+	Page page;
 
-    public Page initBrowser() {
+	public Page initBrowser() {
 
-        ConfigReader config = new ConfigReader();
+		ConfigReader config = new ConfigReader();
 
-        playwright = Playwright.create();
+		playwright = Playwright.create();
 
-        browser = playwright.chromium().launch(
-                new BrowserType.LaunchOptions()
-                        .setHeadless(Boolean.parseBoolean(config.get("headless")))
-        );
+		browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
+				.setHeadless(Boolean.parseBoolean(config.get("headless"))).setArgs(Arrays.asList("--start-maximized"))
 
-        if (Boolean.parseBoolean(config.get("mobile"))) {
-            context = browser.newContext(new Browser.NewContextOptions()
-                    .setViewportSize(375, 812));
-        } else {
-            context = browser.newContext();
-        }
+		);
 
-        page = context.newPage();
-        page.navigate(config.get("url"));
+		if (Boolean.parseBoolean(config.get("mobile"))) {
+			context = browser.newContext(new Browser.NewContextOptions().setViewportSize(375, 812));
+		} else {
+			context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
+		}
 
-        return page;
-    }
+		page = context.newPage();
+		page.navigate(config.get("url"));
 
-    public void tearDown() {
-        browser.close();
-        playwright.close();
-    }
+		return page;
+	}
+
+	public void tearDown() {
+		browser.close();
+		playwright.close();
+	}
 }
