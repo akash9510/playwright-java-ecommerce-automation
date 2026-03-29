@@ -39,6 +39,29 @@ public class LoginPage_Lib {
 				return false;
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean logout() {
+		try {
+
+			page.hover(ico_MyAccount);
+			page.waitForSelector(lnk_Logout);
+
+			page.click(lnk_Logout);
+			page.waitForSelector(btn_Login);
+
+			if (page.isVisible(btn_Login)) {
+				System.out.println("Logout Successfull!!");
+
+				return true;
+			} else {
+				System.err.println("Logout");
+				return false;
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

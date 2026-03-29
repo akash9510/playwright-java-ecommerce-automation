@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]">
+  <listeners>
+    <listener class-name="com.automation.playwright.utils.ExtentListener"/>
+  </listeners>
+  <test thread-count="5" name="Home Page Test(failed)">
+    <classes>
+      <class name="com.automation.playwright.tests.HomePageTest">
+        <methods>
+          <include name="setup"/>
+          <include name="createAnAccount"/>
+          <include name="navigateToRegistrationPageTest"/>
+          <include name="emptyCart"/>
+          <include name="tearDown"/>
+          <include name="login"/>
+          <include name="productSelection"/>
+          <include name="logOut"/>
+        </methods>
+      </class> <!-- com.automation.playwright.tests.HomePageTest -->
+    </classes>
+  </test> <!-- Home Page Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

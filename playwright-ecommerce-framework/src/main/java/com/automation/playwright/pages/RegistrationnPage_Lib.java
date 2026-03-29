@@ -35,7 +35,8 @@ public class RegistrationnPage_Lib {
 			page.locator(slct_Gender).selectOption(new SelectOption().setLabel("Male"));
 
 			// Email & Password
-			page.fill(txt_EmailAddress, "test123@gmail.com");
+			String strEmail = "test" + System.currentTimeMillis() + "@gmail.com";
+			page.fill(txt_EmailAddress, strEmail);
 			page.fill(txt_Password, "Testing@123");
 			page.fill(txt_ConfirmPassword, "Testing@123");
 

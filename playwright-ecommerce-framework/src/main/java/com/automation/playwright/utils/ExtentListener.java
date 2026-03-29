@@ -11,31 +11,36 @@ import com.microsoft.playwright.Page;
 
 public class ExtentListener implements ITestListener {
 
-    private static ExtentReports extent = ExtentReport.initReport();
-    private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+	private static ExtentReports extent = ExtentReport.initReport();
+	private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
-    public void onTestStart(ITestResult result) {
-        ExtentTest extentTest = extent.createTest(result.getMethod().getMethodName());
-        test.set(extentTest);
-    }
+	public void onTestStart(ITestResult result) {
+		ExtentTest extentTest = extent.createTest(result.getMethod().getMethodName());
+		test.set(extentTest);
+	}
 
-    public void onTestSuccess(ITestResult result) {
-        test.get().pass("Test Passed");
-    }
+	public void onTestSuccess(ITestResult result) {
+		test.get().pass("Test Passed");
+	}
 
-    public void onTestFailure(ITestResult result) {
+	public void onTestFailure(ITestResult result) {
 
-        test.get().fail(result.getThrowable());
+		test.get().fail(result.getThrowable());
 
-        Object currentClass = result.getInstance();
-        Page page = ((BaseTest) currentClass).getPage();
+		try {
+			Object currentClass = result.getInstance();
+			Page page = ((BaseTest) currentClass).getPage();
 
-        String path = ScreenshotUtil.capture(page, result.getMethod().getMethodName());
+			String screenshotPath = ScreenshotUtil.capture(page, result.getMethod().getMethodName());
 
-        test.get().addScreenCaptureFromPath(path);
-    }
+			test.get().addScreenCaptureFromPath(screenshotPath);
 
-    public void onFinish(ITestContext context) {
-        extent.flush();
-    }
+		} catch (Exception e) {
+			test.get().fail("Screenshot capture failed: " + e.getMessage());
+		}
+	}
+
+	public void onFinish(ITestContext context) {
+		extent.flush();
+	}
 }
