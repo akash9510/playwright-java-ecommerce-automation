@@ -16,9 +16,16 @@ public class ProductSelection_WebE {
 	public static final String txt_PhoneNumber = "//div[@name='shippingAddress.telephone']//input";
 	public static final String btn_SaveContninue = ".button.action.continue.primary";
 	public static final String lst_PaymentGroup = ".payment-group";
+	public static final String rdo_Cards = "//span[text()='Cards']";
+	public static final String txt_CardNumber = "//input[contains(@id,'encryptedCardNumber')]";
+	public static final String txt_ExpriryDate = "//input[contains(@id,'encryptedExpiryDate')]";
+	public static final String txt_CVV = "//input[contains(@id,'encryptedSecurityCode')]";
+	public static final String btn_PlaceOrder = "(//button[@class='action primary checkout'])[1]";
+	public static final String lbl_ErrorMessage = "//div[@data-ui-id='checkout-cart-validationmessages-message-error']";
 	public static final String chk_AddressManually = ".field.manual-address-toggle input";
 	public static final String ico_Logo = ".logo";
 	public static final String ico_Cart = ".action.showcart";
+	public static final String frm_SecuredField = "//iframe[contains(@src,'securedfields')]";
 	
 	public static final String btn_ClearBasket = "#empty_cart_button";
 	public static final String btn_Yes = ".action-primary.action-accept";

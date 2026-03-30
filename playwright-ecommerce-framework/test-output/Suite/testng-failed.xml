@@ -9,12 +9,10 @@
       <class name="com.automation.playwright.tests.HomePageTest">
         <methods>
           <include name="setup"/>
-          <include name="createAnAccount"/>
-          <include name="navigateToRegistrationPageTest"/>
+          <include name="placeOrder"/>
           <include name="emptyCart"/>
           <include name="tearDown"/>
-          <include name="login"/>
-          <include name="productSelection"/>
+          <include name="initPages"/>
           <include name="logOut"/>
         </methods>
       </class> <!-- com.automation.playwright.tests.HomePageTest -->
